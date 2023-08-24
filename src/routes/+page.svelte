@@ -10,8 +10,8 @@
     <a href="#Contact">Contact</a>
     <a href="#Contact">Company</a>
     <div>
-		<button class="but1">Log In</button>
-		<button class="but2">Sign Up</button>
+		<button class="login-button-first">Log In</button>
+		<button class="signup-form-second">Sign Up</button>
 	  </div>
 </nav>
 <br><br><br>
@@ -21,3 +21,4 @@ to build products</h1>
 Streamline issues, sprints, and product roadmaps.</p>
 <!-- svelte-ignore a11y-img-redundant-alt -->
 <img class="image" style="width:60%;" src="https://linear.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero%404x.15e3a396.jpg&w=3840&q=75" alt="Center of Image">
+<footer><marquee>All Rights Reserved | Maid Corbic, 2023.</marquee></footer>
