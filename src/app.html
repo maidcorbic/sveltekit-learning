@@ -3,10 +3,363 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark light" />
 		%sveltekit.head%
+
+		<style>
+			body {
+				--bg-1: hsl(0, 0%, 100%);
+				--bg-2: hsl(237.78, 55.1%, 9.61%);
+				--bg-3: hsl(239, 82%, 58%);
+				--fg-1: hsl(0, 0%, 13%);
+				--fg-2: hsl(0, 0%, 20%);
+				--fg-2: hsl(0, 0%, 30%);
+				--link: hsl(0, 0%, 100%);
+	background-color: #010313;
+	font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+			}
+			h1 {
+		font-size: clamp(20px, 8vw, 70px);
+		font-family:Arial, Helvetica, sans-serif;
+		background: -webkit-linear-gradient(#eee, #333);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;   
+		margin-top: 10px;
+		text-align: center;
+			}
+			h2{
+				text-align: center;
+				color:purple;
+
+			}
+
+			:is(h1, h2, h3, h4, h5, h6, p) {
+				margin: 1rem 0.1rem;
+			}
+
+			label {
+				margin: 0.5rem 0.1rem;
+			}
+
+			:is(h1, h2, h3, h4, h5, h6, p, label):first-child {
+				margin-top: 0;
+			}
+
+			:is(h1, h2, h3, h4, h5, h6, p, label):last-child {
+				margin-bottom: 0;
+			}
+
+			a {
+				color: var(--link);
+			}
+
+			a:hover {
+				color: var(--link-hover);
+			}
+
+			a:active {
+				color: var(--link-active);
+			}
+
+			label {
+				display: flex;
+				gap: 0.5rem;
+				align-items: center;
+			}
+
+			label input {
+				margin: 0;
+			}
+
+			button,
+			input,
+			select {
+				font-family: inherit;
+				font-size: inherit;
+			}
+
+			button {
+				background: var(--link);
+				color: var(--bg-1);
+				padding: 0.5rem 1rem;
+				border: none;
+				border-radius: var(--border-radius);
+			}
+
+			button:hover {
+				background: var(--link-hover);
+			}
+
+			button:active {
+				background: var(--link-active);
+			}
+
+			:is(button, button:hover, button:active):disabled {
+				background: var(--link);
+				filter: grayscale(1);
+				opacity: 0.4;
+			}
+
+			input,
+			textarea,
+			select {
+				padding: 0.5rem;
+				border: 1px solid var(--bg-2);
+				border-radius: var(--border-radius);
+				box-sizing: border-box;
+			}
+
+			input,
+			textarea {
+				background: var(--bg-1);
+			}
+
+			select:not([multiple]) {
+				background: var(--bg-2);
+			}
+
+			textarea {
+				font-family: var(--font-mono);
+				font-size: 0.9rem;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				align-items: baseline;
+			}
+
+			ul:has(li):has(form) {
+				list-style: none;
+				padding: 0;
+			}
+
+			li form {
+				flex-direction: row;
+				gap: 0.5rem;
+				margin: 0.5rem 0;
+			}
+			nav {
+				position: fixed;
+				width: 1500px;
+				display: inline-flex;
+				-webkit-box-align: center;
+    			align-items: center;
+				gap: 2em;
+				line-height: 10px;
+				background: var(--bg-2);
+				z-index: 2;
+				height:52px;
+				color:white;
+				margin: -22px -52px 83px -192px;
+			}
+			nav a {
+				text-decoration: none;
+			}
+
+			nav a[aria-current='true'] {
+				border-bottom: 2px solid;
+			}
+
+			ul:has(form) {
+				list-style: none;
+				padding: 0;
+			}
+
+			progress {
+				margin: 0.5rem 0;
+			}
+
+			progress:first-child {
+				margin-top: 0;
+			}
+
+			progress:lsat-child {
+				margin-bottom: 0;
+			}
+
+			.error {
+				color: red;
+			}
+
+			code {
+				background: var(--bg-2);
+				font-family: var(--font-mono);
+				font-size: 0.9em;
+				padding: 0.15rem 0.3rem;
+				border-radius: var(--border-radius);
+			}
+
+			ul.todos {
+				padding: 0;
+			}
+
+			ul.todos li:not(:has(> form)),
+			ul.todos li form {
+				position: relative;
+				display: flex;
+				align-items: center;
+				padding: 0.5em 0.5em 0.5em 1em;
+				margin: 0 0 0.5em 0;
+				gap: 0.5em;
+				border-radius: 5px;
+				user-select: none;
+				background: var(--bg-1);
+				filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.1));
+				transition: filter 0.2s, opacity 0.2s;
+			}
+
+			ul.todos .done {
+				filter: none;
+				opacity: 0.4;
+			}
+
+			ul.todos button {
+				border: none;
+				background-color: transparent;
+				background-repeat: no-repeat;
+				background-position: 50% 50%;
+				background-size: 1rem 1rem;
+				cursor: pointer;
+				width: 3em;
+				height: 3em;
+				margin: -0.5em -0.5em -0.5em 0;
+				aspect-ratio: 1;
+				opacity: 0.5;
+				transition: opacity 0.2s;
+			}
+
+			ul.todos button:hover {
+				opacity: 1;
+			}
+
+			body.dark {
+				--bg-1: hsl(0, 0%, 18%);
+				--bg-2: hsl(0, 0%, 30%);
+				--bg-3: hsl(0, 0%, 40%);
+				--fg-1: hsl(0, 0%, 90%);
+				--fg-2: hsl(0, 0%, 70%);
+				--fg-3: hsl(0, 0%, 60%);
+				--link: hsl(206, 96%, 72%);
+				--link-hover: hsl(206, 96%, 78%);
+				--link-active: hsl(206, 96%, 64%);
+			}
+			img{
+            display: block;
+            border-radius: 4px;
+            padding: 5px;
+            margin: 10px;
+            width: 80px;
+            float:left;
+        }
+		.image{
+				display: block;
+ 	 			margin-left: auto;
+ 				 margin-right: auto;
+				width: 50%;
+                border:4px solid #7061fc; 
+                border-radius: 4px;
+                padding:15px;
+                width: 800px;
+                -moz-box-shadow: 0 0 5px #fff;
+                -webkit-box-shadow: 0 0 5px #fff;
+                box-shadow: 0px 0px 305px rgba(133, 42, 252, 0.3);
+                padding:7px;
+        }
+		 .register {
+            background-color: #4E46BB;
+            margin: 10px 0px 0px 200px;
+            padding: 10px;
+            border-radius: 12px;
+        }
+		.login{
+			display: flex;
+            text-align: center;
+			padding:-83px;
+			padding-left: -23px;
+		}
+        .a {
+            padding: 4px;
+        }
+		li {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 13px;
+            padding-bottom: 13px;
+            text-decoration: none;
+            float: left;
+		}
+		.butt1{
+	margin: 32px -132px -40px 252px;
+    height: 40px;
+    width: 120px;
+	direction: rtl;
+    background-color: transparent;
+    color: white;
+    border: 3px solid;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.butt2{
+	background-color: transparent;
+	border: 3px solid;
+	border-radius: 20px;
+	height: 40px;
+    width: 120px;
+	direction: rtl;
+	margin: 22px -52px 20px 152px;
+    background-color:white;
+    color:rgb(126, 22, 223); 
+    font-size: 20px;
+    font-weight: bold;
+}
+.but1{
+	margin: -82px -122px -90px 152px;
+    height: 40px;
+    width: 120px;
+	direction: rtl;
+    background-color: transparent;
+    color: white;
+    border: 3px solid;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.but2{
+	background-color: transparent;
+	border: 3px solid;
+	border-radius: 20px;
+	height: 40px;
+    width: 120px;
+	direction: rtl;
+	margin: 32px -42px 30px 132px;
+    background-color:white;
+    color:rgb(126, 22, 223); 
+    font-size: 20px;
+    font-weight: bold;
+}
+.butt1:hover{
+    background-color:white;
+    color:rgb(126, 22, 223); 
+    font-size: 20px;
+}
+.butt2:hover{
+    opacity: 0.8;
+}
+		</style>
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body>
 		<div style="display: contents">%sveltekit.body%</div>
+
+		<script>
+			const theme = new URL(window.location).searchParams.get('theme');
+
+			document.body.classList.remove('light', 'dark');
+			document.body.classList.add(theme || 'light');
+		</script>
 	</body>
 </html>
