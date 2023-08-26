@@ -3,15 +3,7 @@ body{
 	background-color: #010313;
 	font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 	}
-	h1{
-		font-size: clamp(20px, 8vw, 70px);
-		font-family:Arial, Helvetica, sans-serif;
-		background: -webkit-linear-gradient(#eee, #333);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;   
-		margin-top: 10px;
-		text-align: center;
-	}
+	
 	nav{
 		float:center;
 		color:white;
